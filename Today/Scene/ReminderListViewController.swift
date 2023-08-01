@@ -8,8 +8,8 @@
 import UIKit
 
 private let reuseIdentifier = "Cell"
-typealias DataSource = UICollectionViewDiffableDataSource<Int, String>
-typealias Snapshot = NSDiffableDataSourceSnapshot<Int, String>
+typealias DataSource = UICollectionViewDiffableDataSource<Int, Reminder.ID>
+typealias Snapshot = NSDiffableDataSourceSnapshot<Int, Reminder.ID>
 
 
 class ReminderListViewController: UICollectionViewController {
@@ -23,6 +23,7 @@ class ReminderListViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        updateSnapshot()
         
     }
     
@@ -30,6 +31,7 @@ class ReminderListViewController: UICollectionViewController {
     
     private func setup() {
         configureCollection()
+        
     }
     
     private func listLayout() -> UICollectionViewCompositionalLayout {
