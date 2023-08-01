@@ -16,6 +16,7 @@ class ReminderListViewController: UICollectionViewController {
     
     //MARK: - Properties
     var dataSource : DataSource!
+    var reminders: [Reminder] = Reminder.sampleData
     
     
     //MARK: - Lifecycle
@@ -48,14 +49,14 @@ class ReminderListViewController: UICollectionViewController {
  
         
         dataSource = DataSource(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: String) in
+            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Reminder.ID) in
             return collectionView.dequeueConfiguredReusableCell(
                 using: cellRegistration, for: indexPath, item: itemIdentifier)
         }
         
         var snapshot = Snapshot()
         snapshot.appendSections([0])
-        snapshot.appendItems(Reminder.sampleData.map { $0.title })
+        snapshot.appendItems(Reminder.sampleData.map { $0.id })
         dataSource.apply(snapshot)
     }
     
